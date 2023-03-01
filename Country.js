@@ -24,6 +24,9 @@ export default class Country
         this.topLevelDomain = topLevelDomain;
     }
     static allCountries = {};
+
+    static allLanguages = {};
+
     static fill_db()
     {
         for(let country of countries)
@@ -37,6 +40,13 @@ export default class Country
                 country.name,
                 country.population,
                 country.topLevelDomain);
+
+            let languages = country.languages;
+            for(let language of languages){
+                if(Country.allLanguages[language.iso639_2] == undefined && language.iso639_2 != ""){
+                    Country.allLanguages[language.iso639_2] = new Language(language.iso639_2, language.name);
+                }
+            }
         }
     }
     getPopDensity()
@@ -59,8 +69,6 @@ export default class Country
     {
         return "Code Alpha 3: " + this.codeAlpha3 + "\n" + "Nom: " + this.name + "\n" + "Continent: " + this.continent + "\n" + "Population: " + this.population + "\n" + "Densité de population: " + this.getPopDensity() + "\n" + "Capitale: " + this.capital + "\n" + "Gentilé: " + this.demonym + "\n" + "Top Level Domain: " + this.topLevelDomain + "\n" + "Pays limitrophes: " + this.getBorders();
     }
-
-    static all_languages = [];
 
     static getLanguages()
     {
@@ -92,3 +100,4 @@ Country.fill_db()
 // console.log(Country.allCountries)
 console.log(Country.allCountries['ZWE'].getBorders());
 console.log(Country.allCountries['ZWE'].toString());
+console.log(Country.allLanguages);
