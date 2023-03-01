@@ -1,4 +1,5 @@
 const countries = require('./countries.json');
+import Language from './Language.js'
 
 export default class Country
 {
