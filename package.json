@@ -15,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/Taximin/R4.A10-CompWeb-ProjetJS/issues"
   },
-  "homepage": "https://github.com/Taximin/R4.A10-CompWeb-ProjetJS#readme"
+  "homepage": "https://github.com/Taximin/R4.A10-CompWeb-ProjetJS#readme",
+  "type": "module"
 }

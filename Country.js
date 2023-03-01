@@ -1,5 +1,5 @@
-const countries = require('./countries.json');
-import Language from './Language.js'
+import countries from './countries.json' assert { type: "json" };
+import Language from './Language.js';
 
 export default class Country
 {
@@ -61,14 +61,14 @@ export default class Country
     {
         for(let country of countries)
         {
-            Language.all_languages.push(
+            Country.all_languages.push(
                 new Language(
                     country.languages, 
                     country.languages
                 )
             )
         }
-        console.log(all_languages);
+        console.log(Country.all_languages);
     }
 }
 
