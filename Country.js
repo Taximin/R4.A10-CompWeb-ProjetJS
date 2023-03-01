@@ -1,7 +1,6 @@
 const countries = require('./countries.json');
 
-
-class Country
+export default class Country
 {
     constructor(codeAlpha3, 
         area, 
@@ -23,9 +22,7 @@ class Country
         this.population = population;
         this.topLevelDomain = topLevelDomain;
     }
-
     static allCountries = [];
-
     static fill_db()
     {
         for(let country of countries)
@@ -45,17 +42,13 @@ class Country
             )
         }
     }
-
     getPopDensity()
     {
         return this.population / this.area;
     }
-
     getBorders()
     {
-        
     }
-
     toString()
     {
         return "Code Alpha 3: " + this.codeAlpha3 + "\n" + "Nom: " + this.name + "\n" + "Continent: " + this.continent + "\n" + "Population: " + this.population + "\n" + "Densité de population: " + this.getPopDensity() + "\n" + "Capitale: " + this.capital + "\n" + "Gentilé: " + this.demonym + "\n" + "Top Level Domain: " + this.topLevelDomain + "\n" + "Pays limitrophes: " + this.getBorders();
@@ -63,4 +56,4 @@ class Country
 }
 
 Country.fill_db()
-console.log(Country.allCountries)   
+console.log(Country.allCountries)
