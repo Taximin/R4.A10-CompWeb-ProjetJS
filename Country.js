@@ -59,20 +59,29 @@ export default class Country
 
     static getLanguages()
     {
+        //Pour chaque pays
         for(let country of countries)
         {
-            Country.all_languages.push(
-                new Language(
-                    country.languages, 
-                    country.languages
-                )
-            )
+            //Pour chaque langage du pays
+            for(let language of country.languages)
+            {
+                //On vérifie qu'il n'est pas déjà dans la liste
+                if (!Country.all_languages.some(lang => lang.iso === language.iso639_2))
+                {
+                    //Si ce n'est pas le cas, on l'ajoute en créant un objet Language
+                    Country.all_languages.push(
+                        new Language(
+                            language.iso639_2, 
+                            language.name
+                        )
+                    )
+                }
+            }
         }
-        console.log(Country.all_languages);
+        return Country.all_languages;
     }
 }
 
-Country.fill_db()
-Country.getLanguages()
-//console.log(Country.allCountries)   
-console.log(Country.allCountries)
+Country.fill_db();
+Country.getLanguages();
+//console.log(Country.allCountries);
