@@ -23,32 +23,37 @@ export default class Country
         this.population = population;
         this.topLevelDomain = topLevelDomain;
     }
-    static allCountries = [];
+    static allCountries = {};
     static fill_db()
     {
         for(let country of countries)
         {
-            Country.allCountries.push(
-                new Country(
-                    country.alpha3Code,
-                    country.area,
-                    country.borders || null,
-                    country.capital || null,
-                    country.continent || null,
-                    country.demonym,
-                    country.name,
-                    country.population,
-                    country.topLevelDomain
-                )
-            )
+            Country.allCountries[country.alpha3Code] = new Country(country.alpha3Code,
+                country.area,
+                country.borders,
+                country.capital,
+                country.continent,
+                country.demonym,
+                country.name,
+                country.population,
+                country.topLevelDomain);
         }
     }
     getPopDensity()
     {
-        return this.population / this.area;
+        return (this.population / this.area).toFixed(2);
     }
     getBorders()
     {
+        let ctnBorders = []
+        for(let border of this.borders){
+            for(let country of countries){
+                if(border === country.alpha3Code){
+                    ctnBorders.push(country.alpha3Code);
+                }
+            }
+        }
+        return ctnBorders;
     }
     toString()
     {
@@ -73,6 +78,7 @@ export default class Country
 }
 
 Country.fill_db()
-Country.getLanguages()
-//console.log(Country.allCountries)   
-console.log(Country.allCountries)
+// Country.getLanguages()   
+// console.log(Country.allCountries)
+console.log(Country.allCountries['ZWE'].getBorders());
+console.log(Country.allCountries['ZWE'].toString());
