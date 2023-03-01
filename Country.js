@@ -31,8 +31,8 @@ class Country{
                     country.alpha3Code,
                     country.area,
                     country.borders || null,
-                    country.capital,
-                    country.continent,
+                    country.capital || null,
+                    country.continent || null,
                     country.demonym,
                     country.name,
                     country.population,
@@ -40,6 +40,18 @@ class Country{
                 )
             )
         }
+    }
+
+    getPopDensity(){
+        return this.population / this.area;
+    }
+
+    getBorders(){
+        
+    }
+
+    toString(){
+        return "Code Alpha 3: " + this.codeAlpha3 + "\n" + "Nom: " + this.name + "\n" + "Continent: " + this.continent + "\n" + "Population: " + this.population + "\n" + "Densité de population: " + this.getPopDensity() + "\n" + "Capitale: " + this.capital + "\n" + "Gentilé: " + this.demonym + "\n" + "Top Level Domain: " + this.topLevelDomain + "\n" + "Pays limitrophes: " + this.getBorders();
     }
 }
 
