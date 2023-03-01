@@ -60,7 +60,24 @@ class Country
     {
         return "Code Alpha 3: " + this.codeAlpha3 + "\n" + "Nom: " + this.name + "\n" + "Continent: " + this.continent + "\n" + "Population: " + this.population + "\n" + "Densité de population: " + this.getPopDensity() + "\n" + "Capitale: " + this.capital + "\n" + "Gentilé: " + this.demonym + "\n" + "Top Level Domain: " + this.topLevelDomain + "\n" + "Pays limitrophes: " + this.getBorders();
     }
+
+    static all_languages = [];
+
+    static getLanguages()
+    {
+        for(let country of countries)
+        {
+            Language.all_languages.push(
+                new Language(
+                    country.languages, 
+                    country.languages
+                )
+            )
+        }
+        console.log(all_languages);
+    }
 }
 
 Country.fill_db()
-console.log(Country.allCountries)   
+Country.getLanguages()
+//console.log(Country.allCountries)   
