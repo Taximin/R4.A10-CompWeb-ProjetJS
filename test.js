@@ -63,5 +63,26 @@ function moreNeighbors()
     return maxNeighbors;
 }
 
+/**
+ * 
+ * Pays n’ayant aucun voisin.
+ * @returns {Array<Country>}
+ * 
+ */
+function neighborLess()
+{
+    let lessNeighbors = [];
+    for (let key in Country.allCountries)
+    {
+        let neighbors = Country.allCountries[key].getBorders();
+        if (neighbors.length == 0)
+        {
+            lessNeighbors.push(Country.allCountries[key]);
+        }
+    }
+    return lessNeighbors;
+}
+
 //console.log(outsideTheContinent());
-console.log(moreNeighbors());
+// console.log(moreNeighbors());
+console.log(neighborsLess());
