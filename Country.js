@@ -1,6 +1,5 @@
 export default class Country
 {
-    
     static allCountries = {};
     static allCurrencies = {};
     static allLanguages = {};
@@ -37,9 +36,12 @@ export default class Country
     getBorders()
     {
         let ctnBorders = []
-        for(let border of this.borders){
-            for(let country of allCountries){
-                if(border === country.alpha3Code){
+        for(let border of this.borders)
+        {
+            for(let country of allCountries)
+            {
+                if(border === country.alpha3Code)
+                {
                     ctnBorders.push(country.alpha3Code);
                 }
             }
