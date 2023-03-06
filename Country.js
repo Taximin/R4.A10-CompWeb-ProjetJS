@@ -68,8 +68,6 @@ export default class Country
     {
         let translatedNames = [];
         let desiredTrans = ['de', 'es', 'it']
-        let currencies = [];
-        let ctnLanguages = [];
         
         for(let country of countries){
             let currencies = [];
