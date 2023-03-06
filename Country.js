@@ -8,27 +8,8 @@ export default class Country
     static allCurrencies = {};
     static allLanguages = {};
     
-    constructor(
-        codeAlpha3, 
-        area, 
-        borders, 
-        capital, 
-        continent,
-        demonym,
-        name,
-        population,
-        topLevelDomain)
-        {
-            this.codeAlpha3 = codeAlpha3;
-            this.area = area;
-            this.borders = borders;
-            this.capital = capital;
-            this.continent = continent;
-            this.demonym = demonym;
-            this.name = name;
-            this.population = population;
-            this.topLevelDomain = topLevelDomain;
-            
+    constructor()
+        {            
             Country.fill_db();
         }
         
