@@ -36,20 +36,11 @@ export default class Country
         
         getBorders()
         {
-            let ctnBorders = []
-            if(this.borders != undefined){
-                for(let border of this.borders)
-                {
-                    for(let key in Country.allCountries)
-                    {
-                        if(border === Country.allCountries[key].alpha3Code)
-                        {
-                            ctnBorders.push(Country.allCountries[key].alpha3Code);
-                        }
-                    }
-                }
+            if (this.borders != undefined)
+            {
+                return this.borders;
             }
-            return ctnBorders;
+            return [];
         }
         
         toString()

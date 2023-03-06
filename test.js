@@ -15,24 +15,27 @@ Country.fill_db();
 function outsideTheContinent()
 {
     let resPays = [];
+    //Pour chaque pays
     for (let key in Country.allCountries)
     {
-        console.log(Country.allCountries[key].getBorders());
-        break;
+        //On parcourt ses voisins (codeAlpha3)
         for (let alpha3CodeNeighbor of Country.allCountries[key].getBorders())
         {
+            //Pour chaque pays
             for (let key2 in Country.allCountries)
             {
+                //À partir du codeAlpha3 de chaque voisin, on récupère le pays correspondant
                 if(alpha3CodeNeighbor === Country.allCountries[key2].codeAlpha3)
                 {
-                    if (Country.allCountries[key2].continent !== Country.allCountries[key].continent)
+                    if (Country.allCountries[key2].continent !== Country.allCountries[key].continent && !resPays.includes(Country.allCountries[key2]))
                     {
-                        resPays.push(country);
+                        resPays.push(Country.allCountries[key2]);
                     }
                 }
             }
         }
     }
+    return resPays;
 }
 
 /**
@@ -55,4 +58,4 @@ function moreNeighbors()
     }
 }*/
 
-outsideTheContinent()
+console.log(outsideTheContinent());
