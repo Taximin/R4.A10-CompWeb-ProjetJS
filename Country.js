@@ -8,9 +8,25 @@ export default class Country
     static allCurrencies = {};
     static allLanguages = {};
     
-    constructor()
-        {            
-            Country.fill_db();
+    constructor(alpha3Code,
+        area,
+        borders,
+        capital,
+        continent,
+        demonym,
+        name,
+        population,
+        topLevelDomain)
+        {
+            this.codeAlpha3 = alpha3Code;
+            this.area = area;
+            this.borders = borders;
+            this.capital = capital;
+            this.continent = continent;
+            this.demonym = demonym;
+            this.name = name;
+            this.population = population;
+            this.topLevelDomain = topLevelDomain;
         }
         
         getPopDensity()
@@ -64,23 +80,23 @@ export default class Country
 
                 if(country.currencies != undefined && country.currencies.length < 2){
                     let currency = country.currencies[0];
-                    if(allCurrencies[currency.code] == undefined && currency.code != ""){
-                        allCurrencies[currency.code] = new Currency(currency.code, currency.symbol);
+                    if(Country.allCurrencies[currency.code] == undefined && currency.code != ""){
+                        Country.allCurrencies[currency.code] = new Currency(currency.code, currency.symbol);
                     }
                 }
                 
                 else if(country.currencies != undefined && country.currencies.length > 1){
                     for(let currency of country.currencies){
-                        if(allCurrencies[currency.code] == undefined && currency.code != ""){
-                            allCurrencies[currency.code] = new Currency(currency.code, currency.symbol);
+                        if(Country.allCurrencies[currency.code] == undefined && currency.code != ""){
+                            Country.allCurrencies[currency.code] = new Currency(currency.code, currency.symbol);
                         }
                     }
                 }      
                 
                 let languages = country.languages;
                 for(let language of languages){
-                    if(allLanguages[language.iso639_2] == undefined && language.iso639_2 != ""){
-                        allLanguages[language.iso639_2] = new Language(language.iso639_2, language.name);
+                    if(Country.allLanguages[language.iso639_2] == undefined && language.iso639_2 != ""){
+                        Country.allLanguages[language.iso639_2] = new Language(language.iso639_2, language.name);
                     }
                 }
             }

@@ -5,7 +5,8 @@ import Country from "./Country.js";
  * @returns {Array} 
  * Blablabla
  * */
-function test() {}
+
+Country.fill_db();
 
 /**
  * Pays dont au moins un pays frontalier n’est pas dans le même continent.
@@ -13,16 +14,17 @@ function test() {}
 function outsideTheContinent()
 {
     let resPays = [];
-    for(let country of Country.allCountries)
+    for(let key in Country.allCountries)
     {
+        console.log(key, Country.allCountries[key]);
         //console.log(country.getBorders());
-        for(let border of country.getBorders())
-        {
-            if(border.continent !== country.continent)
-            {
-                resPays.push(country);
-            }
-        }
+        // for(let border of country.getBorders())
+        // {
+        //     if(border.continent !== country.continent)
+        //     {
+        //         resPays.push(country);
+        //     }
+        // }
     }
 }
 
