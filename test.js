@@ -7,6 +7,8 @@ import Country from "./Country.js";
  * */
 function test(demo) {}
 
+Country.fill_db();
+
 /**
  * Pays dont au moins un pays frontalier n’est pas dans le même continent.
  */
