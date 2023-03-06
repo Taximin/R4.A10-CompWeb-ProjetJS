@@ -72,6 +72,9 @@ export default class Country
         let ctnLanguages = [];
         
         for(let country of countries){
+            let currencies = [];
+            let ctnLanguages = [];
+
             translatedNames.push(country.name);
             for(let trans in desiredTrans){
                 translatedNames.push(country.translations[trans]);
