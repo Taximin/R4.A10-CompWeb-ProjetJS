@@ -37,13 +37,15 @@ export default class Country
         getBorders()
         {
             let ctnBorders = []
-            for(let border of this.borders)
-            {
-                for(let country of allCountries)
+            if(this.borders != undefined){
+                for(let border of this.borders)
                 {
-                    if(border === country.alpha3Code)
+                    for(let key in Country.allCountries)
                     {
-                        ctnBorders.push(country.alpha3Code);
+                        if(border === Country.allCountries[key].alpha3Code)
+                        {
+                            ctnBorders.push(Country.allCountries[key].alpha3Code);
+                        }
                     }
                 }
             }
