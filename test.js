@@ -92,15 +92,14 @@ function moreLanguages()
     for (let key in Country.allCountries)
     {
         let languages = Country.allCountries[key].getLanguages();
-        console.log(languages);
         if (languages.length > maxLanguages[0])
         {
             maxLanguages[0] = languages.length;
-            maxLanguages[1] = [Country.allCountries[key]];
+            maxLanguages[1] = [Country.allCountries[key].codeAlpha3];
         }
         else if (languages.length === maxLanguages[0])
         {
-            maxLanguages[1].push(Country.allCountries[key]);
+            maxLanguages[1].push(Country.allCountries[key].codeAlpha3);
         }
     }
     return maxLanguages;
