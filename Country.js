@@ -67,33 +67,41 @@ export default class Country
     static fill_db()
     {
         let translatedNames = [];
-        let desiredTrans = ['de', 'es', 'it']
+        let desiredTrans = ['de', 'es', 'it'];
         
-        for(let country of countries){
+        for(let country of countries)
+        {
             let currencies = [];
             let ctnLanguages = [];
 
             translatedNames.push(country.name);
-            for(let trans in desiredTrans){
+            for(let trans in desiredTrans)
+            {
                 translatedNames.push(country.translations[trans]);
             }
 
-            if(country.currencies != undefined && country.currencies.length < 2){
+            if(country.currencies != undefined && country.currencies.length < 2)
+            {
                 let currency = country.currencies[0];
                 currencies.push(currency.code);
             }
-            else if(country.currencies != undefined && country.currencies.length > 1){
-                for(let currency of country.currencies){
+            else if(country.currencies != undefined && country.currencies.length > 1)
+            {
+                for(let currency of country.currencies)
+                {
                     currencies.push(currency.code);
                 }
             }
 
-            if(country.languages != undefined && country.languages.length < 2){
+            if(country.languages != undefined && country.languages.length < 2)
+            {
                 let language = country.languages[0];
                 ctnLanguages.push(language.iso639_2);
             }
-            else if(country.languages != undefined && country.languages.length > 1){
-                for(let language of country.languages){
+            else if(country.languages != undefined && country.languages.length > 1)
+            {
+                for(let language of country.languages)
+                {
                     ctnLanguages.push(language.iso639_2);
                 }
             }
@@ -113,24 +121,31 @@ export default class Country
                 ctnLanguages
                 );
 
-            if(country.currencies != undefined && country.currencies.length < 2){
+            if(country.currencies != undefined && country.currencies.length < 2)
+            {
                 let currency = country.currencies[0];
-                if(Country.allCurrencies[currency.code] == undefined && currency.code != ""){
+                if(Country.allCurrencies[currency.code] == undefined && currency.code != "")
+                {
                     Country.allCurrencies[currency.code] = new Currency(currency.code, currency.symbol);
                 }
             }
             
-            else if(country.currencies != undefined && country.currencies.length > 1){
-                for(let currency of country.currencies){
-                    if(Country.allCurrencies[currency.code] == undefined && currency.code != ""){
+            else if(country.currencies != undefined && country.currencies.length > 1)
+            {
+                for(let currency of country.currencies)
+                {
+                    if(Country.allCurrencies[currency.code] == undefined && currency.code != "")
+                    {
                         Country.allCurrencies[currency.code] = new Currency(currency.code, currency.symbol);
                     }
                 }
             }      
             
             let languages = country.languages;
-            for(let language of languages){
-                if(Country.allLanguages[language.iso639_2] == undefined && language.iso639_2 != ""){
+            for(let language of languages)
+            {
+                if(Country.allLanguages[language.iso639_2] == undefined && language.iso639_2 != "")
+                {
                     Country.allLanguages[language.iso639_2] = new Language(language.iso639_2, language.name);
                 }
             }
