@@ -139,7 +139,8 @@ export default class Country
     getCurrencies()
     {
         let ctnCurrencies = []
-        for(let currency of this.currencies){
+        for (let currency of this.currencies)
+        {
             ctnCurrencies.push(Country.allCurrencies[currency]);
         }
         return ctnCurrencies;
@@ -148,7 +149,8 @@ export default class Country
     getLanguages()
     {
         let ctnLanguages = []
-        for(let language of this.languages){
+        for (let language of this.languages)
+        {
             ctnLanguages.push(Country.allLanguages[language]);
         }
         return ctnLanguages;
