@@ -5,4 +5,10 @@ export default class Language
         this.iso = iso;
         this.nom = nom;
     }
+
+    toString()
+    {
+        return "ISO: " + this.iso + 
+               "\nNom: " + this.nom;
+    }
 }

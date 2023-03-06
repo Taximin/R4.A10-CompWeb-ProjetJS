@@ -49,7 +49,15 @@ export default class Country
 
     toString()
     {
-        return "Code Alpha 3: " + this.codeAlpha3 + "\n" + "Nom: " + this.name + "\n" + "Continent: " + this.continent + "\n" + "Population: " + this.population + "\n" + "Densité de population: " + this.getPopDensity() + "\n" + "Capitale: " + this.capital + "\n" + "Gentilé: " + this.demonym + "\n" + "Top Level Domain: " + this.topLevelDomain + "\n" /*+ "Pays limitrophes: " + this.getBorders()*/;
+        return  "Code Alpha 3: " + this.codeAlpha3 + 
+                "\nNom:" + this.name + 
+                "\nContinent: " + this.continent + 
+                "\nPopulation: " + this.population + 
+                "\nDensité de population: " + this.getPopDensity() + 
+                "\nCapitale: " + this.capital + 
+                "\nGentilé: " + this.demonym + 
+                "\nTop Level Domain: " + this.topLevelDomain + 
+                "\nPays limitrophes: " + this.getBorders();
     }
 
     fill_db()

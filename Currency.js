@@ -6,7 +6,9 @@ export default class Currency
         this.symbol = symbol;
     }
 
-    toString(){
-        return "Code: " + this.code + " Symbol: " + this.symbol;
+    toString()
+    {
+        return "Code: " + this.code + 
+               "\nSymbol: " + this.symbol;
     }
 }
