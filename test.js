@@ -15,8 +15,23 @@ function outsideTheContinent()
     let resPays = [];
     for(let country of Country.allCountries)
     {
-        console.log(country.getBorders());
+        //console.log(country.getBorders());
+        for(let border of country.getBorders())
+        {
+            if(border.continent !== country.continent)
+            {
+                resPays.push(country);
+            }
+        }
     }
+}
+
+/**
+ * Pays (possibilité de plusieurs) ayant le plus grand nombre de voisins. Affichez aussi les voisins.
+ */
+function moreNeighbors()
+{
+    
 }
 
 outsideTheContinent()
