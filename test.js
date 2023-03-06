@@ -64,6 +64,25 @@ function moreNeighbors()
 }
 
 /**
+ * Pays n’ayant aucun voisin.
+ * @returns {Array<Country>}
+ * 
+ */
+function neighborLess()
+{
+    let lessNeighbors = [];
+    for (let key in Country.allCountries)
+    {
+        let neighbors = Country.allCountries[key].getBorders();
+        if (neighbors.length == 0)
+        {
+            lessNeighbors.push(Country.allCountries[key]);
+        }
+    }
+    return lessNeighbors;
+}
+
+/**
  * Pays (possibilité de plusieurs) parlant le plus de langues. Affichez aussi les langues.
  * @returns {Array<Country>}
  */
@@ -89,4 +108,5 @@ function moreLanguages()
 
 //console.log(outsideTheContinent());
 //console.log(moreNeighbors());
+//console.log(neighborsLess());
 console.log(moreLanguages());
