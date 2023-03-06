@@ -1,11 +1,11 @@
 import Country from "./Country.js";
 
 /** 
- * @param {string} continent
+ * @param {string} demo
  * @returns {Array} 
  * Blablabla
  * */
-function test() {}
+function test(demo) {}
 
 /**
  * Pays dont au moins un pays frontalier n’est pas dans le même continent.
@@ -13,14 +13,19 @@ function test() {}
 function outsideTheContinent()
 {
     let resPays = [];
-    for(let country of Country.allCountries)
+    for (let country of Country.allCountries)
     {
-        //console.log(country.getBorders());
-        for(let border of country.getBorders())
+        for (let alpha3CodeNeighbor of country.getBorders())
         {
-            if(border.continent !== country.continent)
+            for (let country2 of Country.allCountries)
             {
-                resPays.push(country);
+                if(alpha3CodeNeighbor === country2.codeAlpha3)
+                {
+                    if (country2.continent !== country.continent)
+                    {
+                        resPays.push(country);
+                    }
+                }
             }
         }
     }
@@ -31,7 +36,19 @@ function outsideTheContinent()
  */
 function moreNeighbors()
 {
-    
+    let maxNeighbors = {0 : []};
+    for (let country of Country.allCountries)
+    {
+        let neighbors = country.getBorders();
+        if (neighbors.length > maxNeighbors[0])
+        {
+            maxNeighbors = {neighbors.length : [country]};
+        }
+        else if (neighbors.length === maxNeighbors[0])
+        {
+            maxNeighbors[neighbors.length].push(country);
+        }
+    }
 }
 
 outsideTheContinent()
