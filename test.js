@@ -15,15 +15,17 @@ Country.fill_db();
 function outsideTheContinent()
 {
     let resPays = [];
-    for (let country of Country.allCountries)
+    for (let key in Country.allCountries)
     {
-        for (let alpha3CodeNeighbor of country.getBorders())
+        console.log(Country.allCountries[key].getBorders());
+        break;
+        for (let alpha3CodeNeighbor of Country.allCountries[key].getBorders())
         {
-            for (let country2 of Country.allCountries)
+            for (let key2 in Country.allCountries)
             {
-                if(alpha3CodeNeighbor === country2.codeAlpha3)
+                if(alpha3CodeNeighbor === Country.allCountries[key2].codeAlpha3)
                 {
-                    if (country2.continent !== country.continent)
+                    if (Country.allCountries[key2].continent !== Country.allCountries[key].continent)
                     {
                         resPays.push(country);
                     }
@@ -35,7 +37,7 @@ function outsideTheContinent()
 
 /**
  * Pays (possibilité de plusieurs) ayant le plus grand nombre de voisins. Affichez aussi les voisins.
- */
+ 
 function moreNeighbors()
 {
     let maxNeighbors = {0 : []};
@@ -51,6 +53,6 @@ function moreNeighbors()
             maxNeighbors[neighbors.length].push(country);
         }
     }
-}
+}*/
 
 outsideTheContinent()
