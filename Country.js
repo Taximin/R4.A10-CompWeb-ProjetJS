@@ -95,13 +95,12 @@ export default class Country
             }
         }
     
-    static getLanguages()
+    getLanguages()
     {
-        return this.allLanguages;
+        
     }
     
-    static getCurrencies()
+    getCurrencies()
     {
-        return this.allCurrencies;
     }
 }

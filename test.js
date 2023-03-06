@@ -63,5 +63,30 @@ function moreNeighbors()
     return maxNeighbors;
 }
 
+/**
+ * Pays (possibilité de plusieurs) parlant le plus de langues. Affichez aussi les langues.
+ * @returns {Array<Country>}
+ */
+function moreLanguages()
+{
+    let maxLanguages = {0 : []};
+    for (let key in Country.allCountries)
+    {
+        let languages = Country.allCountries[key].getLanguages();
+        console.log(languages);
+        if (languages.length > maxLanguages[0])
+        {
+            maxLanguages[0] = languages.length;
+            maxLanguages[1] = [Country.allCountries[key]];
+        }
+        else if (languages.length === maxLanguages[0])
+        {
+            maxLanguages[1].push(Country.allCountries[key]);
+        }
+    }
+    return maxLanguages;
+}
+
 //console.log(outsideTheContinent());
-console.log(moreNeighbors());
+//console.log(moreNeighbors());
+console.log(moreLanguages());
