@@ -105,7 +105,23 @@ function moreLanguages()
     return maxLanguages;
 }
 
+/**
+ * Pays triés par ordre décroissant de densité de population
+ * @returns {Array<Country>}
+ */
+function sortingDecreasingDensity()
+{
+    let lstAllCountries = Object.values(Country.allCountries);
+
+    lstAllCountries.sort((a, b) => {
+        return b.getPopDensity() - a.getPopDensity();
+    });
+
+    return lstAllCountries;
+}
+
 //console.log(outsideTheContinent());
 //console.log(moreNeighbors());
 //console.log(neighborsLess());
 console.log(moreLanguages());
+//console.log(sortingDecreasingDensity());
