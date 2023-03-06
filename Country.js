@@ -1,3 +1,6 @@
+import Language from './Language.js';
+import Currency from './Currency.js';
+
 export default class Country
 {
     static allCountries = {};
@@ -62,11 +65,11 @@ export default class Country
                 "\nPays limitrophes: " + this.getBorders();
     }
 
-    fill_db()
+    static fill_db()
     {
-        for(let country of countries)
+        for(let country of Country.allCountries)
         {
-            allCountries[country.alpha3Code] = new Country(country.alpha3Code,
+            Country.allCountries[country.alpha3Code] = new Country(country.alpha3Code,
                 country.area,
                 country.borders,
                 country.capital,
@@ -76,21 +79,20 @@ export default class Country
                 country.population,
                 country.topLevelDomain);
 
-            if(country.currencies != undefined){
-                if(country.currencies.length < 2){
-                    let currency = country.currencies[0];
+            if(country.currencies != undefined && country.currencies.length < 2){
+                let currency = country.currencies[0];
+                if(allCurrencies[currency.code] == undefined && currency.code != ""){
+                    allCurrencies[currency.code] = new Currency(currency.code, currency.symbol);
+                }
+            }
+
+            else if(country.currencies != undefined && country.currencies.length > 1){
+                for(let currency of country.currencies){
                     if(allCurrencies[currency.code] == undefined && currency.code != ""){
                         allCurrencies[currency.code] = new Currency(currency.code, currency.symbol);
                     }
                 }
-                else if(country.currencies.length > 1){
-                    for(let currency of country.currencies){
-                        if(allCurrencies[currency.code] == undefined && currency.code != ""){
-                            allCurrencies[currency.code] = new Currency(currency.code, currency.symbol);
-                        }
-                    }
-                }
-            }        
+            }      
 
             let languages = country.languages;
             for(let language of languages){
