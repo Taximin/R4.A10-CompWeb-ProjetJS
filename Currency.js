@@ -1,4 +1,5 @@
-export default class Currency
+//export default
+class Currency
 {    
     constructor(code, symbol)
     {

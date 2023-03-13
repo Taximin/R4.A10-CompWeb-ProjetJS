@@ -1,4 +1,5 @@
-export default class Language
+//export default
+class Language
 {
     constructor(iso, nom)
     {

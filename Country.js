@@ -1,8 +1,9 @@
-import Language from './Language.js';
-import Currency from './Currency.js';
-import countries from './countries.json' assert { type: "json" };
+//import Language from './Language.js';
+//import Currency from './Currency.js';
+//import countries from './countries.json' assert { type: "json" };
 
-export default class Country
+//export default 
+class Country
 {
     static allCountries = {};
     static allCurrencies = {};

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <style>
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            td, th {
+                border: 2px solid;
+            }
+
+            img {
+                height: 2em;
+            }
+
+            tr {
+                text-align: center;
+            }
+        </style>
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+        <script src="countries.js"></script>
+        <script src="Language.js"></script>
+        <script src="Currency.js"></script>
+        <script src="Country.js"></script>
+    </header>
+    <body>
+        <table>
+            <thead>
+                <tr>
+                <th>Nom en français</th>
+                <th>Population</th>
+                <th>Surface</th>
+                <th>Densité de population</th>
+                <th>Continent d’appartenance</th>
+                <th>Drapeau</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table> 
+    </body>
+    <script>
+        Country.fill_db();
+
+        for (let key in Country.allCountries)
+        {
+
+            $("tbody").load("template.html"); 
+            $("tr[" + key + "] td:contains('NOM')").text(Country.allCountries[key].name);
+            $("tr[" + key + "] td:contains('POP')").text(Country.allCountries[key].population);
+            $("tr[" + key + "] td:contains('SURF')").text(Country.allCountries[key].area);
+            $("tr[" + key + "] td:contains('DENS')").text(Country.allCountries[key].getPopDensity());
+            $("tr[" + key + "] td:contains('CONT')").text(Country.allCountries[key].continent);
+            $("tr[" + key + "] td:contains('URL')").html(`<img src="${Country.allCountries[key].flag}/">`);
+        }
+    </script>
+</html>

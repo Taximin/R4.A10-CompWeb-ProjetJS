@@ -1,11 +1,4 @@
-import Country from "./Country.js";
-
-/** 
- * @param {string} demo
- * @returns {Array} 
- * Blablabla
- * */
-function test(demo) {}
+//import Country from "./Country.js";
 
 Country.fill_db();
 
