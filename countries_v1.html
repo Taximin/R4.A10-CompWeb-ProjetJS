@@ -45,16 +45,22 @@
     <script>
         Country.fill_db();
 
-        for (let key in Country.allCountries)
+        // Load the contents of the template file
+        $.get("template.html", function(template) 
         {
-
-            $("tbody").load("template.html"); 
-            $("tr[" + key + "] td:contains('NOM')").text(Country.allCountries[key].name);
-            $("tr[" + key + "] td:contains('POP')").text(Country.allCountries[key].population);
-            $("tr[" + key + "] td:contains('SURF')").text(Country.allCountries[key].area);
-            $("tr[" + key + "] td:contains('DENS')").text(Country.allCountries[key].getPopDensity());
-            $("tr[" + key + "] td:contains('CONT')").text(Country.allCountries[key].continent);
-            $("tr[" + key + "] td:contains('URL')").html(`<img src="${Country.allCountries[key].flag}/">`);
-        }
+            // Loop through all the countries and generate table rows using the template
+            for (let key in Country.allCountries) 
+            {
+                let country = Country.allCountries[key];
+                let rowHtml = template
+                    .replace("NOM", country.name)
+                    .replace("POP", country.population)
+                    .replace("SURF", country.area)
+                    .replace("DENS", country.getPopDensity())
+                    .replace("CONT", country.continent)
+                $('tbody').append(rowHtml);
+            }
+        });
+        
     </script>
 </html>
