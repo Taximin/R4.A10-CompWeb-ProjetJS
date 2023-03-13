@@ -100,6 +100,67 @@ function moreLanguages()
 }
 
 /**
+ * Pays ayant au moins un voisin parlant l’une de ses langues. Affichez aussi les pays voisins et les langues en question
+ * @returns {Array<Country, Country>}
+ */
+function withCommonLanguage(){
+    let res = [];
+    for (let key in Country.allCountries){
+        let languages = Country.allCountries[key].getLanguages();
+        let neighborsAlpha = Country.allCountries[key].getBorders();
+        let neighbors = [];
+        for(let neighborAlpha of neighborsAlpha){
+            neighbors.push(Country.allCountries[neighborAlpha]);
+        }
+        for(let neighbor of neighbors){
+            for(let language of languages){
+                if(neighbor != undefined){
+                    // console.log(res.indexOf(Country.allCountries[key].codeAlpha3))
+                    if(!res.includes(Country.allCountries[key].codeAlpha3)){
+                        res[res.indexOf(Country.allCountries[key].codeAlpha3) + 1].push([neighbor.codeAlpha3, language.iso]);
+                    }
+                    else if(neighbor.getLanguages().includes(language)){
+                        res.push(Country.allCountries[key].codeAlpha3, [[neighbor.codeAlpha3, language.iso]]);
+                    }
+                }
+            }
+        }
+    }
+    return res;
+}
+
+/**
+ * Pays sans aucun voisin ayant au moins une de ses monnaies.
+ * @returns {Array<Country>}
+ */
+function withoutCommonCurrency(){
+    let res = [];
+    for(let key in Country.allCountries){
+        res.push(Country.allCountries[key]);
+    }
+    for(let country of res){
+        let currencies = country.currencies;
+        let neighborAlpha = country.getBorders();
+        let neighbors = [];
+        for(let neighbor of neighborAlpha){
+            neighbors.push(Country.allCountries[neighbor]);
+        }
+        for(let neighbor of neighbors){
+            for(let currency of currencies){
+                if(neighbor != undefined){
+                    for(let neighbCurrency of neighbor.getCurrencies()){
+                        if(neighbCurrency["code"] == currency){
+                            res.splice(res.indexOf(country), 1);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return res;
+}
+
+/**
  * Pays triés par ordre décroissant de densité de population
  * @returns {Array<Country>}
  */
@@ -172,6 +233,8 @@ function veryLongTrip(nom_pays)
 //console.log(moreNeighbors());
 //console.log(neighborsLess());
 //console.log(moreLanguages());
+//console.dir(withCommonLanguage(), {'maxArrayLength': null});
+console.dir(withoutCommonCurrency(), {'maxArrayLength': null});
 //console.log(sortingDecreasingDensity());
 //console.log(moreTopLevelDomains());
 let lstAllCountriesLongTrip = [];
