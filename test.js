@@ -42,7 +42,7 @@ function outsideTheContinent()
 
 /**
  * Pays (possibilité de plusieurs) ayant le plus grand nombre de voisins. Affichez aussi les voisins.
- * @returns {Array<Country>}
+ * @returns {Array<Int8Array,Country>}
  */
 function moreNeighbors()
 {
@@ -84,7 +84,7 @@ function neighborLess()
 
 /**
  * Pays (possibilité de plusieurs) parlant le plus de langues. Affichez aussi les langues.
- * @returns {Array<Country>}
+ * @returns {Array<Int8Array,Country>}
  */
 function moreLanguages()
 {
@@ -92,14 +92,15 @@ function moreLanguages()
     for (let key in Country.allCountries)
     {
         let languages = Country.allCountries[key].getLanguages();
+
         if (languages.length > maxLanguages[0])
         {
             maxLanguages[0] = languages.length;
-            maxLanguages[1] = [Country.allCountries[key].codeAlpha3];
+            maxLanguages[1] = [Country.allCountries[key]];
         }
         else if (languages.length === maxLanguages[0])
         {
-            maxLanguages[1].push(Country.allCountries[key].codeAlpha3);
+            maxLanguages[1].push(Country.allCountries[key]);
         }
     }
     return maxLanguages;
@@ -181,6 +182,60 @@ function sortingDecreasingDensity()
     return lstAllCountries;
 }
 
+/**
+ * Pays ayant plusieurs Top Level Domains Internet.
+ * @returns {Array<Country>}
+ */
+function moreTopLevelDomains()
+{
+    let lstMoreTopLevelDomains = [];
+    for (let key in Country.allCountries)
+    {
+        if (Country.allCountries[key].topLevelDomain.length > 1)
+        {
+            lstMoreTopLevelDomains.push(Country.allCountries[key]);
+        }
+    }
+
+    return lstMoreTopLevelDomains;
+}
+
+/**
+ * Liste de tous les pays que l’on peut visiter en passant de l’un à l’autre
+ * @param {string} nom_pays
+ */
+function veryLongTrip(nom_pays)
+{
+    //Pour chaque pays
+    for (let key in Country.allCountries) 
+    {
+        //On cherche le pays correspondant au nom passé en paramètre
+        if (nom_pays === Country.allCountries[key].name)
+        {
+            console.log(Country.allCountries[key]);
+            //On parcourt ses voisins (codeAlpha3)
+            for (let alpha3CodeNeighbor of Country.allCountries[key].getBorders())
+            {
+                //À partir du codeAlpha3 de chaque voisin, on récupère le pays correspondant
+                for (let key2 in Country.allCountries)
+                {
+                    //Un pays correspond à un autre lorsque leurs codesAlpha3 sont identiques
+                    if(alpha3CodeNeighbor === Country.allCountries[key2].codeAlpha3)
+                    {
+                        //Si le pays n'est pas déjà dans le tableau
+                        if (!lstAllCountriesLongTrip.includes(Country.allCountries[key2]))
+                        {
+                            lstAllCountriesLongTrip.push(Country.allCountries[key2]);
+                            veryLongTrip(Country.allCountries[key2].name);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return lstAllCountriesLongTrip;
+}
+
 //console.log(outsideTheContinent());
 //console.log(moreNeighbors());
 //console.log(neighborsLess());
@@ -188,3 +243,8 @@ function sortingDecreasingDensity()
 //console.dir(withCommonLanguage(), {'maxArrayLength': null});
 console.dir(withoutCommonCurrency(), {'maxArrayLength': null});
 //console.log(sortingDecreasingDensity());
+//console.log(moreTopLevelDomains());
+let lstAllCountriesLongTrip = [];
+veryLongTrip("France");
+console.log(lstAllCountriesLongTrip);
+console.log(lstAllCountriesLongTrip.length);
